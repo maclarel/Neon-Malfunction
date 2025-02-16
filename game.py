@@ -65,7 +65,7 @@ def level_up_screen(current_score):
 
     pygame.display.flip()
 
-def reset_game(increase_enemies=0):
+def reset_game(increase_enemies=1):
     global player, enemies, data_shards, platforms, neon_grid, initial_enemy_count
     player = Player(SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2)
     initial_enemy_count = max(1, int(initial_enemy_count * (1 + increase_enemies)))
