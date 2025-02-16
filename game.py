@@ -27,6 +27,7 @@ clock = pygame.time.Clock()
 # Create game objects
 player = Player(SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2)
 initial_enemy_count = 5
+original_enemy_count = initial_enemy_count
 enemies = [Enemy(random.randint(0, SCREEN_WIDTH), random.randint(0, SCREEN_HEIGHT)) for _ in range(initial_enemy_count)]
 data_shards = [DataShard(random.randint(0, SCREEN_WIDTH), random.randint(0, SCREEN_HEIGHT), value=2) for _ in range(10)]
 platforms = [Platform(random.randint(0, SCREEN_WIDTH), random.randint(0, SCREEN_HEIGHT)) for _ in range(5)]
@@ -69,14 +70,17 @@ def level_up_screen(current_score):
     pygame.display.flip()
 
 def reset_game(increase_enemies=1, reset_score=False):
-    global player, enemies, data_shards, platforms, neon_grid, initial_enemy_count, persistent_score
+    global player, enemies, data_shards, platforms, neon_grid, initial_enemy_count, persistent_score, original_enemy_count
     if reset_score:
         persistent_score = 0
     else:
         persistent_score = player.score
     player = Player(SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2)
     player.score = persistent_score
-    initial_enemy_count = max(1, int(initial_enemy_count * (1 + increase_enemies)))
+    if increase_enemies == 0:
+        initial_enemy_count = original_enemy_count
+    else:
+        initial_enemy_count = max(1, int(initial_enemy_count * (1 + increase_enemies)))
     enemies = [Enemy(random.randint(0, SCREEN_WIDTH), random.randint(0, SCREEN_HEIGHT)) for _ in range(initial_enemy_count)]
     data_shards = [DataShard(random.randint(0, SCREEN_WIDTH), random.randint(0, SCREEN_HEIGHT), value=2) for _ in range(10)]
     platforms = [Platform(random.randint(0, SCREEN_WIDTH), random.randint(0, SCREEN_HEIGHT)) for _ in range(5)]
@@ -94,7 +98,7 @@ while running:
     if game_over:
         keys = pygame.key.get_pressed()
         if keys[pygame.K_r]:
-            reset_game(reset_score=True)
+            reset_game(increase_enemies=0, reset_score=True)
             game_over = False
         if keys[pygame.K_q]:
             running = False
