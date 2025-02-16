@@ -32,4 +32,21 @@ Can you outfly the glitches and survive the **Neon Malfunction**?
 
 ---
 
+## **Installation and Launch Instructions**
+
+### **Dependencies**
+- **Pygame:** The game requires the Pygame library. You can install it using pip:
+  ```
+  pip install pygame
+  ```
+
+### **Running the Game**
+1. Ensure you have Python installed on your system.
+2. Install the Pygame library as mentioned above.
+3. Navigate to the directory containing the game files.
+4. Run the game using the following command:
+  ```
+  python game.py
+  ```
+
 Let me know if you want to tweak anything or add some cool extra features! 🚀
