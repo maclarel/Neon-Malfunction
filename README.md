@@ -19,8 +19,8 @@ Can you outfly the glitches and survive the **Neon Malfunction**?
 ## **How to Play**
 
 ### **Controls**
-- **Flap (Jump/Ascend):** Press (button/key) to gain altitude.
-- **Move Left/Right:** Use (joystick/arrow keys) to navigate.
+- **Flap (Jump/Ascend):** Press (Spacebar) to gain altitude.
+- **Move Left/Right:** Use (A/D keys) to navigate.
 - **Land on Enemies:** Collide with enemies from above to defeat them.
 - **Collect Data Shards:** Absorb digital fragments to increase score and stability.
 
