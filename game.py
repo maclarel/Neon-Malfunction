@@ -89,6 +89,11 @@ while running:
         platform.draw(screen)
     neon_grid.draw(screen)
 
+    # Display score
+    font = pygame.font.Font(None, 36)
+    score_text = font.render(f"Score: {player.score}", True, WHITE)
+    screen.blit(score_text, (10, 10))
+
     # Update the display
     pygame.display.flip()
 
