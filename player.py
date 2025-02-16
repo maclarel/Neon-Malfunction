@@ -25,4 +25,8 @@ class Player:
         pygame.draw.circle(screen, (0, 255, 0), (int(self.position.x), int(self.position.y)), 10)
 
     def collides_with(self, other):
-        return self.rect.colliderect(other.rect)
+        if self.rect.colliderect(other.rect):
+            if isinstance(other, Enemy):
+                self.score += 10
+            return True
+        return False
