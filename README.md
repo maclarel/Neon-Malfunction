@@ -33,7 +33,7 @@ Can you outfly the glitches and survive the **Neon Malfunction**?
 - **Game Over Screen:** When the game ends, a Game Over screen will be displayed showing the final score and an option to play again or quit by pressing Q.
 - **Data Shards Points:** Each Data Shard collected is worth 2 points.
 - **Enemies Points:** Each enemy defeated is worth 10 points.
-- **Level Up Feature:** When the player has collided with all Enemy and DataShard objects, an interstitial screen will be displayed outlining the current score and prompting the user to press "N" to advance to the next level. The game will restart with the player's current score as a starting point and the number of enemies will increase by 20% (with a minimum increase of 1).
+- **Level Up Feature:** When the player has collided with all Enemy objects, an interstitial screen will be displayed outlining the current score and prompting the user to press "N" to advance to the next level. The game will restart with the player's current score as a starting point and the number of enemies will increase by 20% (with a minimum increase of 1).
 
 ### **Player Controls and Collision Detection**
 - **Continuous Movement:** The player can move continuously by holding down the A/D keys.

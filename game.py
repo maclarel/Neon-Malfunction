@@ -138,6 +138,7 @@ while running:
     for enemy in enemies:
         if player.collides_with(enemy):
             if player.position.y < enemy.position.y:
+                player.score += enemy.value
                 enemies.remove(enemy)
             else:
                 game_over = True
@@ -155,8 +156,8 @@ while running:
         if player.collides_with(element):
             player.position.y = element.position.y - player.rect.height
 
-    # Check if all enemies and data shards are collected
-    if not enemies and not data_shards:
+    # Check if all enemies are defeated
+    if not enemies:
         level_up = True
 
     # Draw everything
