@@ -44,6 +44,9 @@ def game_over_screen(final_score):
     play_again_text = font.render("Press R to Play Again", True, WHITE)
     screen.blit(play_again_text, (SCREEN_WIDTH // 2 - play_again_text.get_width() // 2, SCREEN_HEIGHT // 2 - play_again_text.get_height() // 2 + 50))
 
+    quit_text = font.render("Press Q to Quit", True, WHITE)
+    screen.blit(quit_text, (SCREEN_WIDTH // 2 - quit_text.get_width() // 2, SCREEN_HEIGHT // 2 - quit_text.get_height() // 2 + 100))
+
     pygame.display.flip()
 
 def reset_game():
@@ -67,6 +70,8 @@ while running:
         if keys[pygame.K_r]:
             reset_game()
             game_over = False
+        if keys[pygame.K_q]:
+            running = False
         continue
 
     # Player controls
