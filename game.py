@@ -68,9 +68,12 @@ def level_up_screen(current_score):
 
     pygame.display.flip()
 
-def reset_game(increase_enemies=1):
+def reset_game(increase_enemies=1, reset_score=False):
     global player, enemies, data_shards, platforms, neon_grid, initial_enemy_count, persistent_score
-    persistent_score = player.score
+    if reset_score:
+        persistent_score = 0
+    else:
+        persistent_score = player.score
     player = Player(SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2)
     player.score = persistent_score
     initial_enemy_count = max(1, int(initial_enemy_count * (1 + increase_enemies)))
@@ -91,7 +94,7 @@ while running:
     if game_over:
         keys = pygame.key.get_pressed()
         if keys[pygame.K_r]:
-            reset_game()
+            reset_game(reset_score=True)
             game_over = False
         if keys[pygame.K_q]:
             running = False
@@ -100,7 +103,7 @@ while running:
     if level_up:
         keys = pygame.key.get_pressed()
         if keys[pygame.K_n]:
-            reset_game(increase_enemies=0.2)
+            reset_game(increase_enemies=0.2, reset_score=False)
             level_up = False
         continue
 
