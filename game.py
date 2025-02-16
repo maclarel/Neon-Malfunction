@@ -32,6 +32,9 @@ data_shards = [DataShard(random.randint(0, SCREEN_WIDTH), random.randint(0, SCRE
 platforms = [Platform(random.randint(0, SCREEN_WIDTH), random.randint(0, SCREEN_HEIGHT)) for _ in range(5)]
 neon_grid = NeonGrid()
 
+# Global variable to store persistent score
+persistent_score = 0
+
 def game_over_screen(final_score):
     screen.fill(BLACK)
     font = pygame.font.Font(None, 74)
@@ -66,8 +69,10 @@ def level_up_screen(current_score):
     pygame.display.flip()
 
 def reset_game(increase_enemies=1):
-    global player, enemies, data_shards, platforms, neon_grid, initial_enemy_count
+    global player, enemies, data_shards, platforms, neon_grid, initial_enemy_count, persistent_score
+    persistent_score = player.score
     player = Player(SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2)
+    player.score = persistent_score
     initial_enemy_count = max(1, int(initial_enemy_count * (1 + increase_enemies)))
     enemies = [Enemy(random.randint(0, SCREEN_WIDTH), random.randint(0, SCREEN_HEIGHT)) for _ in range(initial_enemy_count)]
     data_shards = [DataShard(random.randint(0, SCREEN_WIDTH), random.randint(0, SCREEN_HEIGHT), value=2) for _ in range(10)]
