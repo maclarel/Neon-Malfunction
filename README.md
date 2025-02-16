@@ -22,7 +22,7 @@ Can you outfly the glitches and survive the **Neon Malfunction**?
 - **Flap (Jump/Ascend):** Press (Spacebar) to gain altitude.
 - **Move Left/Right:** Use (A/D keys) to navigate.
 - **Land on Enemies:** Collide with enemies from above to defeat them.
-- **Collect Data Shards:** Absorb digital fragments to increase score and stability.
+- **Collect Data Shards:** Absorb digital fragments to increase score and stability. Each Data Shard is worth 2 points.
 
 ### **Game Rules**
 - **High Ground Wins:** Just like Joust, attacking from a higher position eliminates enemies.
@@ -31,6 +31,8 @@ Can you outfly the glitches and survive the **Neon Malfunction**?
 - **Eliminate All Opponents:** Clear all enemies to complete a wave.
 - **Boundary Collision Ends Game:** If the player touches the boundaries of the game window, the game will end.
 - **Game Over Screen:** When the game ends, a Game Over screen will be displayed showing the final score and an option to play again or quit by pressing Q.
+- **Data Shards Points:** Each Data Shard collected is worth 2 points.
+- **Enemies Points:** Each enemy defeated is worth 10 points.
 
 ### **Player Controls and Collision Detection**
 - **Continuous Movement:** The player can move continuously by holding down the A/D keys.

@@ -27,7 +27,7 @@ clock = pygame.time.Clock()
 # Create game objects
 player = Player(SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2)
 enemies = [Enemy(random.randint(0, SCREEN_WIDTH), random.randint(0, SCREEN_HEIGHT)) for _ in range(5)]
-data_shards = [DataShard(random.randint(0, SCREEN_WIDTH), random.randint(0, SCREEN_HEIGHT)) for _ in range(10)]
+data_shards = [DataShard(random.randint(0, SCREEN_WIDTH), random.randint(0, SCREEN_HEIGHT), value=2) for _ in range(10)]
 platforms = [Platform(random.randint(0, SCREEN_WIDTH), random.randint(0, SCREEN_HEIGHT)) for _ in range(5)]
 neon_grid = NeonGrid()
 
@@ -53,7 +53,7 @@ def reset_game():
     global player, enemies, data_shards, platforms, neon_grid
     player = Player(SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2)
     enemies = [Enemy(random.randint(0, SCREEN_WIDTH), random.randint(0, SCREEN_HEIGHT)) for _ in range(5)]
-    data_shards = [DataShard(random.randint(0, SCREEN_WIDTH), random.randint(0, SCREEN_HEIGHT)) for _ in range(10)]
+    data_shards = [DataShard(random.randint(0, SCREEN_WIDTH), random.randint(0, SCREEN_HEIGHT), value=2) for _ in range(10)]
     platforms = [Platform(random.randint(0, SCREEN_WIDTH), random.randint(0, SCREEN_HEIGHT)) for _ in range(5)]
     neon_grid = NeonGrid()
 

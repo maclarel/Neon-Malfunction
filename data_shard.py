@@ -1,7 +1,7 @@
 import pygame
 
 class DataShard:
-    def __init__(self, x, y, value=10):
+    def __init__(self, x, y, value=2):
         self.position = pygame.Vector2(x, y)
         self.value = value
         self.rect = pygame.Rect(x, y, 10, 10)
