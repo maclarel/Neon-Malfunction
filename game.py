@@ -4,6 +4,7 @@ from player import Player
 from enemy import Enemy
 from data_shard import DataShard
 from neon_grid import NeonGrid
+from platform_module import Platform
 
 # Initialize Pygame
 pygame.init()

@@ -1,4 +1,5 @@
 import pygame
+import platform_module
 
 class NeonGrid:
     def __init__(self):
@@ -17,7 +18,7 @@ class NeonGrid:
 
     def handle_glitches(self):
         for element in self.elements:
-            if isinstance(element, Platform) and element.stability < 50:
+            if isinstance(element, platform_module.Platform) and element.stability < 50:
                 element.stability -= 0.5
                 if element.stability <= 0:
                     self.elements.remove(element)
