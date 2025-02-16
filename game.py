@@ -26,7 +26,8 @@ clock = pygame.time.Clock()
 
 # Create game objects
 player = Player(SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2)
-enemies = [Enemy(random.randint(0, SCREEN_WIDTH), random.randint(0, SCREEN_HEIGHT)) for _ in range(5)]
+initial_enemy_count = 5
+enemies = [Enemy(random.randint(0, SCREEN_WIDTH), random.randint(0, SCREEN_HEIGHT)) for _ in range(initial_enemy_count)]
 data_shards = [DataShard(random.randint(0, SCREEN_WIDTH), random.randint(0, SCREEN_HEIGHT), value=2) for _ in range(10)]
 platforms = [Platform(random.randint(0, SCREEN_WIDTH), random.randint(0, SCREEN_HEIGHT)) for _ in range(5)]
 neon_grid = NeonGrid()
@@ -65,10 +66,10 @@ def level_up_screen(current_score):
     pygame.display.flip()
 
 def reset_game(increase_enemies=0):
-    global player, enemies, data_shards, platforms, neon_grid
+    global player, enemies, data_shards, platforms, neon_grid, initial_enemy_count
     player = Player(SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2)
-    num_enemies = int(len(enemies) * (1 + increase_enemies))
-    enemies = [Enemy(random.randint(0, SCREEN_WIDTH), random.randint(0, SCREEN_HEIGHT)) for _ in range(max(1, num_enemies))]
+    initial_enemy_count = max(1, int(initial_enemy_count * (1 + increase_enemies)))
+    enemies = [Enemy(random.randint(0, SCREEN_WIDTH), random.randint(0, SCREEN_HEIGHT)) for _ in range(initial_enemy_count)]
     data_shards = [DataShard(random.randint(0, SCREEN_WIDTH), random.randint(0, SCREEN_HEIGHT), value=2) for _ in range(10)]
     platforms = [Platform(random.randint(0, SCREEN_WIDTH), random.randint(0, SCREEN_HEIGHT)) for _ in range(5)]
     neon_grid = NeonGrid()
