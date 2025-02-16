@@ -8,17 +8,17 @@ class Player:
         self.rect = pygame.Rect(x, y, 20, 20)
 
     def flap(self):
-        self.velocity.y = -10
+        self.velocity.y = -5
 
     def move_left(self):
-        self.velocity.x = -5
+        self.velocity.x = -2.5
 
     def move_right(self):
-        self.velocity.x = 5
+        self.velocity.x = 2.5
 
     def update(self):
         self.position += self.velocity
-        self.velocity.y += 1  # Gravity effect
+        self.velocity.y += 0.5  # Gravity effect
         self.rect.topleft = (self.position.x, self.position.y)
 
     def draw(self, screen):

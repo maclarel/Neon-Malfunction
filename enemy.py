@@ -4,7 +4,7 @@ import random
 class Enemy:
     def __init__(self, x, y):
         self.position = pygame.Vector2(x, y)
-        self.velocity = pygame.Vector2(random.choice([-1, 1]), random.choice([-1, 1]))
+        self.velocity = pygame.Vector2(random.choice([-0.5, 0.5]), random.choice([-0.5, 0.5]))
         self.rect = pygame.Rect(x, y, 20, 20)  # P2dcf
 
     def update(self):
