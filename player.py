@@ -27,7 +27,5 @@ class Player:
 
     def collides_with(self, other):
         if self.rect.colliderect(other.rect):
-            if isinstance(other, Enemy):
-                self.score += 10
             return True
         return False
