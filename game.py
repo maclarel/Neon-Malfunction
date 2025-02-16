@@ -26,7 +26,8 @@ clock = pygame.time.Clock()
 
 # Create game objects
 player = Player(SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2)
-enemies = [Enemy(random.randint(0, SCREEN_WIDTH), random.randint(0, SCREEN_HEIGHT)) for _ in range(5)]
+initial_enemy_count = 5
+enemies = [Enemy(random.randint(0, SCREEN_WIDTH), random.randint(0, SCREEN_HEIGHT)) for _ in range(initial_enemy_count)]
 data_shards = [DataShard(random.randint(0, SCREEN_WIDTH), random.randint(0, SCREEN_HEIGHT), value=2) for _ in range(10)]
 platforms = [Platform(random.randint(0, SCREEN_WIDTH), random.randint(0, SCREEN_HEIGHT)) for _ in range(5)]
 neon_grid = NeonGrid()
@@ -49,10 +50,26 @@ def game_over_screen(final_score):
 
     pygame.display.flip()
 
-def reset_game():
-    global player, enemies, data_shards, platforms, neon_grid
+def level_up_screen(current_score):
+    screen.fill(BLACK)
+    font = pygame.font.Font(None, 74)
+    level_up_text = font.render("LEVEL UP!", True, WHITE)
+    screen.blit(level_up_text, (SCREEN_WIDTH // 2 - level_up_text.get_width() // 2, SCREEN_HEIGHT // 2 - level_up_text.get_height() // 2 - 50))
+
+    font = pygame.font.Font(None, 36)
+    score_text = font.render(f"Current Score: {current_score}", True, WHITE)
+    screen.blit(score_text, (SCREEN_WIDTH // 2 - score_text.get_width() // 2, SCREEN_HEIGHT // 2 - score_text.get_height() // 2))
+
+    next_level_text = font.render("Press N to Advance to Next Level", True, WHITE)
+    screen.blit(next_level_text, (SCREEN_WIDTH // 2 - next_level_text.get_width() // 2, SCREEN_HEIGHT // 2 - next_level_text.get_height() // 2 + 50))
+
+    pygame.display.flip()
+
+def reset_game(increase_enemies=1):
+    global player, enemies, data_shards, platforms, neon_grid, initial_enemy_count
     player = Player(SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2)
-    enemies = [Enemy(random.randint(0, SCREEN_WIDTH), random.randint(0, SCREEN_HEIGHT)) for _ in range(5)]
+    initial_enemy_count = max(1, int(initial_enemy_count * (1 + increase_enemies)))
+    enemies = [Enemy(random.randint(0, SCREEN_WIDTH), random.randint(0, SCREEN_HEIGHT)) for _ in range(initial_enemy_count)]
     data_shards = [DataShard(random.randint(0, SCREEN_WIDTH), random.randint(0, SCREEN_HEIGHT), value=2) for _ in range(10)]
     platforms = [Platform(random.randint(0, SCREEN_WIDTH), random.randint(0, SCREEN_HEIGHT)) for _ in range(5)]
     neon_grid = NeonGrid()
@@ -60,6 +77,7 @@ def reset_game():
 # Game loop
 running = True
 game_over = False
+level_up = False
 while running:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
@@ -72,6 +90,13 @@ while running:
             game_over = False
         if keys[pygame.K_q]:
             running = False
+        continue
+
+    if level_up:
+        keys = pygame.key.get_pressed()
+        if keys[pygame.K_n]:
+            reset_game(increase_enemies=0.2)
+            level_up = False
         continue
 
     # Player controls
@@ -118,6 +143,10 @@ while running:
         if player.collides_with(element):
             player.position.y = element.position.y - player.rect.height
 
+    # Check if all enemies and data shards are collected
+    if not enemies and not data_shards:
+        level_up = True
+
     # Draw everything
     screen.fill(BLACK)
     player.draw(screen)
@@ -142,6 +171,8 @@ while running:
 
     if game_over:
         game_over_screen(player.score)
+    elif level_up:
+        level_up_screen(player.score)
 
 # Quit Pygame
 pygame.quit()
