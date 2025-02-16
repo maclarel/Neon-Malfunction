@@ -3,7 +3,6 @@ import random
 from player import Player
 from enemy import Enemy
 from data_shard import DataShard
-from platform import Platform
 from neon_grid import NeonGrid
 
 # Initialize Pygame
