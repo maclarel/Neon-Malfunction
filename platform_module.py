@@ -8,7 +8,7 @@ class Platform:
 
     def update(self):
         # Platforms may become unstable over time
-        self.stability -= 0.1
+        self.stability -= 0.05
         if self.stability < 0:
             self.stability = 0
         self.rect.topleft = (self.position.x, self.position.y)
