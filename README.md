@@ -34,6 +34,9 @@ Can you outfly the glitches and survive the **Neon Malfunction**?
 - **Continuous Movement:** The player can move continuously by holding down the A/D keys.
 - **Collision Detection:** The player will collide with platforms and neon grid elements, updating their position accordingly.
 
+### **Spawning the Player Character**
+- The player character is automatically spawned at the center of the screen when the game starts.
+
 ---
 
 ## **Installation and Launch Instructions**
