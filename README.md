@@ -1,3 +1,5 @@
+All code in this repository, including most commit messages, PRs, etc... are AI generated. It's quite likely that most of the features in the README don't actually exist. Good luck.
+
 ```
   _   _                         _       _        _   _       _       _                
  | \ | | ___  _ __ _ __   ___  | | __ _| |_ __ _| |_(_) __ _| | ___ | |_ ___  _ __    
