@@ -30,6 +30,10 @@ Can you outfly the glitches and survive the **Neon Malfunction**?
 - **Neon Corruption Spreads:** The longer you play, the more unstable the world becomes—platforms may disappear!
 - **Eliminate All Opponents:** Clear all enemies to complete a wave.
 
+### **Player Controls and Collision Detection**
+- **Continuous Movement:** The player can move continuously by holding down the A/D keys.
+- **Collision Detection:** The player will collide with platforms and neon grid elements, updating their position accordingly.
+
 ---
 
 ## **Installation and Launch Instructions**

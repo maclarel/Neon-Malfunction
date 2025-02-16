@@ -70,6 +70,14 @@ while running:
             player.score += data_shard.value
             data_shards.remove(data_shard)
 
+    for platform in platforms:
+        if player.collides_with(platform):
+            player.position.y = platform.position.y - player.rect.height
+
+    for element in neon_grid.elements:
+        if player.collides_with(element):
+            player.position.y = element.position.y - player.rect.height
+
     # Draw everything
     screen.fill(BLACK)
     player.draw(screen)
