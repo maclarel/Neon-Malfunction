@@ -29,6 +29,8 @@ Can you outfly the glitches and survive the **Neon Malfunction**?
 - **Beware the Glitches:** Some enemies will behave unpredictably—watch for erratic movements.
 - **Neon Corruption Spreads:** The longer you play, the more unstable the world becomes—platforms may disappear!
 - **Eliminate All Opponents:** Clear all enemies to complete a wave.
+- **Boundary Collision Ends Game:** If the player touches the boundaries of the game window, the game will end.
+- **Game Over Screen:** When the game ends, a Game Over screen will be displayed showing the final score and an option to play again or quit by pressing Q.
 
 ### **Player Controls and Collision Detection**
 - **Continuous Movement:** The player can move continuously by holding down the A/D keys.

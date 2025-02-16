@@ -31,12 +31,48 @@ data_shards = [DataShard(random.randint(0, SCREEN_WIDTH), random.randint(0, SCRE
 platforms = [Platform(random.randint(0, SCREEN_WIDTH), random.randint(0, SCREEN_HEIGHT)) for _ in range(5)]
 neon_grid = NeonGrid()
 
+def game_over_screen(final_score):
+    screen.fill(BLACK)
+    font = pygame.font.Font(None, 74)
+    game_over_text = font.render("GAME OVER", True, WHITE)
+    screen.blit(game_over_text, (SCREEN_WIDTH // 2 - game_over_text.get_width() // 2, SCREEN_HEIGHT // 2 - game_over_text.get_height() // 2 - 50))
+
+    font = pygame.font.Font(None, 36)
+    score_text = font.render(f"Final Score: {final_score}", True, WHITE)
+    screen.blit(score_text, (SCREEN_WIDTH // 2 - score_text.get_width() // 2, SCREEN_HEIGHT // 2 - score_text.get_height() // 2))
+
+    play_again_text = font.render("Press R to Play Again", True, WHITE)
+    screen.blit(play_again_text, (SCREEN_WIDTH // 2 - play_again_text.get_width() // 2, SCREEN_HEIGHT // 2 - play_again_text.get_height() // 2 + 50))
+
+    quit_text = font.render("Press Q to Quit", True, WHITE)
+    screen.blit(quit_text, (SCREEN_WIDTH // 2 - quit_text.get_width() // 2, SCREEN_HEIGHT // 2 - quit_text.get_height() // 2 + 100))
+
+    pygame.display.flip()
+
+def reset_game():
+    global player, enemies, data_shards, platforms, neon_grid
+    player = Player(SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2)
+    enemies = [Enemy(random.randint(0, SCREEN_WIDTH), random.randint(0, SCREEN_HEIGHT)) for _ in range(5)]
+    data_shards = [DataShard(random.randint(0, SCREEN_WIDTH), random.randint(0, SCREEN_HEIGHT)) for _ in range(10)]
+    platforms = [Platform(random.randint(0, SCREEN_WIDTH), random.randint(0, SCREEN_HEIGHT)) for _ in range(5)]
+    neon_grid = NeonGrid()
+
 # Game loop
 running = True
+game_over = False
 while running:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
+
+    if game_over:
+        keys = pygame.key.get_pressed()
+        if keys[pygame.K_r]:
+            reset_game()
+            game_over = False
+        if keys[pygame.K_q]:
+            running = False
+        continue
 
     # Player controls
     keys = pygame.key.get_pressed()
@@ -57,13 +93,17 @@ while running:
         platform.update()
     neon_grid.update()
 
+    # Check if player touches the boundaries
+    if player.position.x < 0 or player.position.x > SCREEN_WIDTH or player.position.y < 0 or player.position.y > SCREEN_HEIGHT:
+        game_over = True
+
     # Collision detection
     for enemy in enemies:
         if player.collides_with(enemy):
             if player.position.y < enemy.position.y:
                 enemies.remove(enemy)
             else:
-                running = False
+                game_over = True
 
     for data_shard in data_shards:
         if player.collides_with(data_shard):
@@ -99,6 +139,9 @@ while running:
 
     # Cap the frame rate
     clock.tick(30)
+
+    if game_over:
+        game_over_screen(player.score)
 
 # Quit Pygame
 pygame.quit()
